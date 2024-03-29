@@ -8,7 +8,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 
 
-TIME_INTERVAL = 10  # in minutes
+TIME_INTERVAL = 60  # in minutes
 
 if __name__ == '__main__':
     # read sent email addresses:timestamp
