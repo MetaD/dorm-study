@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-    var firstname, lastname, uid, dorm_room, dorm_wing, email, timestamp;
+    var firstname, lastname, uid, dorm_room, dorm_wing, email, phone, timestamp;
     var url;
 
     $('#instr').hide();
@@ -24,6 +24,11 @@
         $('#uid')[0].setCustomValidity(/^[0-9]{9}$/.test($('#uid').val()) ? '' : errmsg);
     });
 
+    $('#phone').change(() => {
+        var errmsg = 'Please enter your 10-digit phone number';
+        $('#phone')[0].setCustomValidity(/^[0-9]{10}$/.test($('#phone').val()) ? '' : errmsg);
+    });
+
     function submit_info() {
         $('#dorm-wing-group input').removeClass('is-invalid');
         $('#dorm').removeClass('is-invalid');
@@ -34,6 +39,7 @@
         lastname = $('#lastname').val();
         uid = $('#uid').val();
         email = $('#email').val();
+        phone = $('#phone').val();
 
         // ask to double check
         $('#info-check').append('<p>Your first name: <strong>' + firstname + '</strong></p>')
@@ -41,6 +47,7 @@
         $('#info-check').append('<p>Your dorm room: <strong>' + dorm_room + ' (' + dorm_wing + ')</strong></p>')
         $('#info-check').append('<p>Your UID: <strong>' + uid + '</strong></p>')
         $('#info-check').append('<p>Your email: <strong>' + email + '</strong></p>')
+        $('#info-check').append('<p>Your phone number: <strong>' + phone + '</strong></p>')
         $('#info-form').hide();
         $('#confirmation').show();
         $('#correct-info').hide();
@@ -62,6 +69,7 @@
             lastname: lastname,
             uid: uid,
             email: email,
+            phone: phone,
             dorm_room: dorm_room,
             dorm_wing: dorm_wing,
             login_start_time: timestamp.toString()

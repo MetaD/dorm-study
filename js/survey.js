@@ -86,9 +86,24 @@ jQuery(document).ready(function() {
 
     // ----- NICKNAME -----
 
+    $('input[name=movein]:radio').change(() => {
+        if ($('#other-movein-check').is(':checked')) {
+            $('#other-movein').attr('required', true);
+        } else {
+            $('#other-movein').attr('required', false);
+        }
+    });
+
     function nickname_onfinish() {
+        if (! $('#nickname').get(0).reportValidity()) {
+            return false;
+        }
+
         window.save2firebase({
-            'other_name': $('#other-name').val(),
+            other_name: $('#other-name').val(),
+            movein_time: $('input[name=movein]:checked').val(),
+            other_movein_time: $('#other-movein').val(),
+            ra: $('input[name=ra]:checked').val(),
             timestamp: Date.now()
         }, page_i, question_i);
 
