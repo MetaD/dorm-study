@@ -148,8 +148,8 @@ jQuery(document).ready(function() {
             let field = $(fields[i]);
             if (tag == name_to_title_case(field.val())) {
                 // test if using valid characters
-                if (! /^[a-zA-Z-]+\s+[a-zA-Z-'\s]*[a-zA-Z-]+$/.test(tag)) {
-                    field.get(0).setCustomValidity('Please enter first and last name, one name at a time, with alphabets, spaces, hyphens and apostrophes only');
+                if (! /^[a-zA-Z-]+\s+[0-9a-zA-Z-'\s]*[0-9a-zA-Z-]+$/.test(tag)) {
+                    field.get(0).setCustomValidity('Please enter first and last name, one name at a time, with alphabets, spaces, hyphens, apostrophes and numbers only');
                     field.get(0).reportValidity();
                     valid = false;
                 }
