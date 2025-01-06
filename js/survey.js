@@ -39,6 +39,9 @@ jQuery(document).ready(function() {
     likert_questions = likert_questions.slice(0, likert_length);
     question_texts[3] = likert_questions;
 
+    // add floor plan url
+    $('#floorplan').wrap('<a href="https://www.housing.ucla.edu/maps/plans/hed-so-0' + parameters[7][0] + '.gif" target="_blank"/>');
+
     // PROGRESS BAR
     var prog_bar = new ProgressBar.Line('#prog-bar', { color: '#ffc107' });
 
