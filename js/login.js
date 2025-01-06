@@ -81,7 +81,12 @@
         $('#info-form').hide();
         $('#confirmation').hide();
         $('#correct-info').hide();
-        $('#instr').show();
+
+        if (dormfloor === '2S' || dormfloor === '4S') {
+            $('#instr').show();
+        } else {
+            $('#wrong-floor').show();
+        }
     });
 
     $('#agree-check').change((e) => {
