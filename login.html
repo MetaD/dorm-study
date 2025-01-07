@@ -87,10 +87,10 @@
             <button id="start" class="btn btn-primary central-btn disabled">Start</button>
         </div>
 
+        <script type="text/javascript" src="js/global.js"></script>
+
         <!-- Firebase -->
         <script type="module">
-            var DB_NAME = 'test_data';    // 'test_' or 'prod_'
-
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
             import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js';
             import { getFirestore, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js';
@@ -124,7 +124,7 @@
             // send data to firebase
             async function save_user2firebase(user_id, timestamp, url, data) {
                 try {
-                    let ref = doc(db, DB_NAME, user_id);
+                    let ref = doc(db, window.db_name + '_data', user_id);
                     let docSnap = await getDoc(ref);
                     if (docSnap.exists()) {
                         let email, progress;

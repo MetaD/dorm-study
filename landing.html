@@ -62,10 +62,10 @@
             <span class="small">SMS: (424)272-0550</span>
         </div>
 
+        <script type="text/javascript" src="js/global.js"></script>
+
         <!-- Firebase -->
         <script type="module">
-            var DB_TYPE = 'test_';  // 'test_' or 'prod_'
-
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
             import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js';
             import { getFirestore, doc, getDoc, setDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js';
@@ -103,7 +103,7 @@
             var tally = window.location.search.substring(1).split(/[&=]/)[3];
             var docSnap = null;
             try {
-                docSnap = await getDoc(doc(db, DB_TYPE + 'count', 'count'));
+                docSnap = await getDoc(doc(db, window.db_name + '_count', 'count'));
             } catch (e) {
                 alert('Failed to load data. Please check your internet connection and try again.\n' +
                     'If this message shows up multiple times, please contact the experimenters.\n' + e);

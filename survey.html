@@ -257,6 +257,7 @@
         </div>
         <div id="invalid2" class="invalid">Please answer the required questions before proceeding</div>
 
+        <script type="text/javascript" src="js/global.js"></script>
 
         <!-- Firebase -->
         <script type="module">
@@ -265,15 +266,13 @@
             var user_id = parameters[1];
             var timestamp = parameters[3];
             var tally = parameters[7];
-            if (!user_id || user_id.length != 8 || !timestamp || timestamp.length != 13 || !tally || tally.length != 2) {
+            if (!user_id || user_id.length != 9 || !timestamp || timestamp.length != 13 || !tally || tally.length != 2) {
                 alert('This URL is invalid. Please contact the experimenters.');
                 $('body').hide();
             }
             if (parseInt(timestamp) == 0) {
                 timestamp = Date.now().toString();
             }
-
-            var DB_TYPE = 'test_';  // 'test_' or 'prod_'
 
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
             import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js';
@@ -307,7 +306,7 @@
 
             // +1 to # of completions
             async function increase_completion_count() {
-                await updateDoc(doc(db, DB_TYPE + 'count', 'count'), {
+                await updateDoc(doc(db, window.db_name + '_count', 'count'), {
                     [tally]: increment(1)
                 });
             }
@@ -317,7 +316,7 @@
                 $('#btn-next').addClass('disabled');
                 var docSnap = null;
                 try {
-                    docSnap = await getDoc(doc(db, DB_TYPE + 'data', user_id));
+                    docSnap = await getDoc(doc(db, window.db_name + '_data', user_id));
                 } catch (e) {
                     alert('Failed to load your data. Please check your internet connection and try again.\n' +
                         'If this message shows up multiple times, please contact the experimenters.\n' + e);
@@ -338,7 +337,7 @@
             async function save2firebase(data, page_i, question_i, progress=true, end=false) {
                 try {
                     let db_key = page_i + '.' + question_i;
-                    let ref = doc(db, DB_TYPE + 'data', user_id);
+                    let ref = doc(db, window.db_name + '_data', user_id);
                     let save_data = { [timestamp]: {[db_key]: data}};
                     if (progress) {
                         save_data.progress = db_key;

@@ -22,7 +22,7 @@ if __name__ == '__main__':
     cred = credentials.Certificate('serviceAccountKey.json')
     firebase_admin.initialize_app(cred)
     db = firestore.client()
-    docs = db.collection('prod_data').stream()
+    docs = db.collection('2025prod_data').stream()
     email, url, timestamp, progress = None, None, None, None
     for doc in docs:
         data = doc.to_dict()
