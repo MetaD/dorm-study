@@ -580,26 +580,23 @@ jQuery(document).ready(function() {
     // PAYMENT QUESTION
 
     function pay_form_onchange() {
-        if ($('input[type=radio][name=lumpsum]').is(':checked') &&
-                $('input[type=radio][name=payment]').is(':checked') &&
+        if ($('input[type=radio][name=payment]').is(':checked') &&
                 $('input[type=radio][name=fmri]').is(':checked')) {
             $('#btn-next').removeClass('disabled');
         }
     }
 
-    $('input[type=radio][name=lumpsum]').change(pay_form_onchange);
     $('input[type=radio][name=payment]').change(pay_form_onchange);
     $('input[type=radio][name=fmri]').change(pay_form_onchange);
 
     function payment_onfinish() {
-        for (let form of ['#lumpsum-form', '#payment-form', '#fmri-form']) {
+        for (let form of ['#payment-form', '#fmri-form']) {
             console.log(form);
             if (! $(form).get(0).reportValidity()) {
                 return false;
             }
         }
         window.save2firebase({
-            lumpsum: $('input[name=lumpsum]:checked').val(),
             payment: $('input[name=payment]:checked').val(),
             fmri: $('input[name=fmri]:checked').val()
         }, page_i, question_i, true, true);

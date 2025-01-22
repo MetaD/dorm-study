@@ -12,9 +12,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="js/tagmanager.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagmanager/3.0.2/tagmanager.min.css" integrity="sha256-bOEaK4HVga5gZsjsEWTe2m8GUDvK+mHcoj4N9W56uBo=" crossorigin="anonymous" />
-        <script src="js/multi-switch.js"></script>
         <script src="js/progressbar.min.js"></script>
-        <link rel="stylesheet" href="css/multi-switch.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.min.js" integrity="sha256-oj52qvIP5c7N6lZZoh9z3OYacAIOjsROAcZBHUaJMyw=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.min.css" integrity="sha256-G3IAYJYIQvZgPksNQDbjvxd/Ca1SfCDFwu2s2lt0oGo=" crossorigin="anonymous" />
 
@@ -61,8 +59,10 @@
             <div class="form-group">
                 <span class="form-text">For the following questions, please consider your social interactions since you arrived at UCLA. 
                     Please enter people's first name and last name (for example, Daniel Kim), and click "Add" or hit Enter after each person.</span>
-                <small id="duplicate" class="form-text text-muted">If you know different people with the same name, please add a descriptive term that's meaningful to yourself, 
-                    so that you can disambiguate them later (for example, Daniel Kim artist, Daniel Kim new-york, Daniel Kim chess-club, etc.).</small>
+                <small class="form-text text-muted">
+                    If you don't know someone's last name, or if you know different people with the same name, please add a descriptive term that's meaningful to yourself,
+                    so you can tell them apart later. For example: Daniel Kim MathMajor, Daniel Room203, etc.</small>
+                <div id="floorplan"><small>Click here to see a floor map if needed.</small></div>
                 <div class="question-text roster-text"></div>
                 <p id="dorm-name-instr" class="sm-instr">
                     i) Please name the people who fit the above criteria for you from <strong>your wing of Hedrick Hall</strong>
@@ -77,7 +77,6 @@
                 </div>
                 <div id="dorm-names-container"></div>
             </div>
-            <div id="floorplan" class="roster-text" align="right"><small>Click here to see a floor map</small></div>
             <div class="form-group">
                 <p id="outsider-name-instr" class="sm-instr">
                     ii) Please add anyone else (including other people at UCLA or people outside of UCLA) who fits the above criteria for you
@@ -206,19 +205,8 @@
         <!-- payment -->
         <div id="p5" class="page central">
             <div class="question-text"></div>
-            <p>Our default is to pay you in one lump sum. For example, if you did this survey ($20), both fMRI sessions (2 x $50), the photo session ($10), and got the $5 bonus (if >80% of people in your wing of Hedrick do this survey), you would get a payment of of $135. Providing lump sum payment is our default because people have preferred this in the past and because it facilitates giving out the bonus payments. Is this OK with you or do you prefer to be paid in smaller increments?</p>
-            <form id="lumpsum-form" class="pay-form">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="lumpsum" value="yes" required>
-                    <label class="form-check-label">Yes, this is OK with me.</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="lumpsum" value="no">
-                    <label class="form-check-label">No, I prefer to be paid in smaller increments (if so, please email csnl@ucla.edu to arrange this).</label>
-                </div>
-            </form>
-            <br><br>
-            <p>We can pay you in cash or gift cards. Which do you prefer?</p>
+            <p>Our default is to pay you in Amazon gift cards. This is because people have preferred this in the past and it facilitates giving out bonus payments. 
+               Is this okay with you, or would you prefer to be paid in cash?</p>
             <form id="payment-form" class="pay-form">
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="payment" value="cash" required>
@@ -228,13 +216,10 @@
                     <input class="form-check-input" type="radio" name="payment" value="amazon">
                     <label class="form-check-label">Amazon gift card</label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="payment" value="target">
-                    <label class="form-check-label">Target gift card</label>
-                </div>
             </form>
             <br><br>
-            <p>If you also do the fMRI sessions, we can also provide you with a 3D print of your brain. Are you interested in this?</p>
+            <p>Are you interested in participating the fMRI portion of the study? You can check your preliminary eligibility at 
+               <a href="https://docs.google.com/forms/d/e/1FAIpQLSciZt3SkqrfttyOB6LDYRDaPORvVne1fiwNLhhSBobQhddFIg/viewform" target="_blank"/>this link</a>:</p>
             <form id="fmri-form" class="pay-form">
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="fmri" value="yes" required>

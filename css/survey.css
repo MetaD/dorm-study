@@ -10,6 +10,7 @@
 }
 .question-text {
   font-weight: 500;
+  font-size: large;
   margin-bottom: 1rem;
 }
 .roster-text {
@@ -79,7 +80,7 @@
 #instr-public {
   margin-left: 1rem;
 }
-#duplicate {
+#floorplan {
   margin-bottom: 1.5rem !important;
 }
 .top-divider {
