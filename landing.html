@@ -91,18 +91,18 @@
                 alert('Failed to access database. Please check your internet connection and try again.\n' +
                     'If it doesn\'t work, please contact the experimenters.\n' + 
                     'Error: ' + errorCode + '\n' + errorMessage);
-                window.location.replace('progress.html');  // refresh page
+                window.location.replace('landing.html');  // refresh page
                 console.log(error);
             });
             $('#survey-btn').click(() => {
-                let param = window.location.search.substring(1).split(/[&=]/)[1];
+                let param = window.location.search.substring(1).split(/[&=]/)[1].toUpperCase();
                 window.location.replace('login.html?l=' + param);
             });
 
             // retrieve # of completions
-            var tally = window.location.search.substring(1).split(/[&=]/)[3];
+            var tally = window.location.search.substring(1).split(/[&=]/)[1].toUpperCase();
             var docSnap = null;
-            try {
+            try { 
                 docSnap = await getDoc(doc(db, window.db_name + '_count', 'count'));
             } catch (e) {
                 alert('Failed to load data. Please check your internet connection and try again.\n' +
@@ -113,8 +113,8 @@
             if (docSnap && docSnap.exists()) {
                 let count = docSnap.data()[tally];
                 let totals = {
-                    '2N': 97,
-                    '7S': 90
+                    '2S': 98,
+                    '4S': 96
                 }
                 let total = tally in totals ? totals[tally] : 100;
                 let percent = Math.floor(count/total * 100);
