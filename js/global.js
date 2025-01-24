@@ -1,1 +1,1 @@
-window.db_name = 'test';
+window.db_name = 'prod';
