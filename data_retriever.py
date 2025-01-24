@@ -11,7 +11,7 @@ if __name__ == '__main__':
     cred = credentials.Certificate('serviceAccountKey.json')
     firebase_admin.initialize_app(cred)
     db = firestore.client()
-    subjects = db.collection('prod_data').stream()
+    subjects = db.collection('2025prod_data').stream()
 
     # iterate over all subjects
     for subj in subjects:

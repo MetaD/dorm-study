@@ -39,6 +39,9 @@ jQuery(document).ready(function() {
     likert_questions = likert_questions.slice(0, likert_length);
     question_texts[3] = likert_questions;
 
+    // add floor plan url
+    $('#floorplan').wrap('<a href="https://www.housing.ucla.edu/maps/plans/hed-so-0' + parameters[7][0] + '.gif" target="_blank"/>');
+
     // PROGRESS BAR
     var prog_bar = new ProgressBar.Line('#prog-bar', { color: '#ffc107' });
 
@@ -148,8 +151,8 @@ jQuery(document).ready(function() {
             let field = $(fields[i]);
             if (tag == name_to_title_case(field.val())) {
                 // test if using valid characters
-                if (! /^[a-zA-Z-]+\s+[a-zA-Z-'\s]*[a-zA-Z-]+$/.test(tag)) {
-                    field.get(0).setCustomValidity('Please enter first and last name, one name at a time, with alphabets, spaces, hyphens and apostrophes only');
+                if (! /^[a-zA-Z-]+\s+[0-9a-zA-Z-'\s]*[0-9a-zA-Z-]+$/.test(tag)) {
+                    field.get(0).setCustomValidity('Please enter first and last name, one name at a time, with alphabets, spaces, hyphens, apostrophes and numbers only');
                     field.get(0).reportValidity();
                     valid = false;
                 }
@@ -577,26 +580,23 @@ jQuery(document).ready(function() {
     // PAYMENT QUESTION
 
     function pay_form_onchange() {
-        if ($('input[type=radio][name=lumpsum]').is(':checked') &&
-                $('input[type=radio][name=payment]').is(':checked') &&
+        if ($('input[type=radio][name=payment]').is(':checked') &&
                 $('input[type=radio][name=fmri]').is(':checked')) {
             $('#btn-next').removeClass('disabled');
         }
     }
 
-    $('input[type=radio][name=lumpsum]').change(pay_form_onchange);
     $('input[type=radio][name=payment]').change(pay_form_onchange);
     $('input[type=radio][name=fmri]').change(pay_form_onchange);
 
     function payment_onfinish() {
-        for (let form of ['#lumpsum-form', '#payment-form', '#fmri-form']) {
+        for (let form of ['#payment-form', '#fmri-form']) {
             console.log(form);
             if (! $(form).get(0).reportValidity()) {
                 return false;
             }
         }
         window.save2firebase({
-            lumpsum: $('input[name=lumpsum]:checked').val(),
             payment: $('input[name=payment]:checked').val(),
             fmri: $('input[name=fmri]:checked').val()
         }, page_i, question_i, true, true);

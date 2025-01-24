@@ -53,8 +53,8 @@
             <br><br><br>
             <h5><p>Already filled out this survey?</p></h5>
             <div class="blue">
-                <p><a href="https://forms.gle/mHXAKBjgBqbyLukx8"><u>Additional Opportunities to Participate</u></a></p>
-                <p><a href="https://forms.gle/KugEgAYtKNR5YHkd7"><u>Preliminary MRI Eligibility Screening</u></a></p>
+                <p><a href="https://www.canva.com/design/DAGVqIaDCkQ/MSrvq3OseWD-kcTOPA3t7w/view" target="_blank"><u><strong>Photo Session Information</strong></u></a></p>
+                <p><a href="https://forms.gle/KugEgAYtKNR5YHkd7" target="_blank"><u><strong>Preliminary MRI Eligibility Screening</strong></u></a></p>
             </div>
             <br><br>
             <span class="small">If you have additional questions, please contact a member of our research team:</span><br>
@@ -62,10 +62,10 @@
             <span class="small">SMS: (424)272-0550</span>
         </div>
 
+        <script type="text/javascript" src="js/global.js"></script>
+
         <!-- Firebase -->
         <script type="module">
-            var DB_TYPE = 'prod_';  // 'test_' or 'prod_'
-
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
             import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js';
             import { getFirestore, doc, getDoc, setDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js';
@@ -91,19 +91,18 @@
                 alert('Failed to access database. Please check your internet connection and try again.\n' +
                     'If it doesn\'t work, please contact the experimenters.\n' + 
                     'Error: ' + errorCode + '\n' + errorMessage);
-                window.location.replace('progress.html');  // refresh page
+                window.location.replace('landing.html');  // refresh page
                 console.log(error);
             });
             $('#survey-btn').click(() => {
-                let param = window.location.search.substring(1).split(/[&=]/)[1];
-                window.location.replace('login.html?l=' + param);
+                window.location.replace('login.html?l=4');
             });
 
             // retrieve # of completions
-            var tally = window.location.search.substring(1).split(/[&=]/)[3];
+            var tally = window.location.search.substring(1).split(/[&=]/)[1].toUpperCase();
             var docSnap = null;
-            try {
-                docSnap = await getDoc(doc(db, DB_TYPE + 'count', 'count'));
+            try { 
+                docSnap = await getDoc(doc(db, window.db_name + '_count', 'count'));
             } catch (e) {
                 alert('Failed to load data. Please check your internet connection and try again.\n' +
                     'If this message shows up multiple times, please contact the experimenters.\n' + e);
@@ -113,8 +112,8 @@
             if (docSnap && docSnap.exists()) {
                 let count = docSnap.data()[tally];
                 let totals = {
-                    '2N': 97,
-                    '7S': 90
+                    '2S': 98,
+                    '4S': 96
                 }
                 let total = tally in totals ? totals[tally] : 100;
                 let percent = Math.floor(count/total * 100);

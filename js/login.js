@@ -59,10 +59,12 @@
     });
 
     $('#confirm-btn').click(() => {
-        let user_id = CryptoJS.SHA256(dorm_room + uid).toString();
+        let sha256 = CryptoJS.SHA256(dorm_room + uid).toString();
         let ts = timestamp.valueOf().toString();
+        let dormfloor = dorm_room[0] + dorm_wing[0].toUpperCase();
+        let user_id = 'B' + dormfloor + '-' + ts.toString().slice(5, 6) + sha256.slice(0, 4);  // ID for all tasks
         let param = window.location.search.substring(1).split(/[&=]/)[1];
-        url = 'user=' + user_id + '&timestamp=' + ts + '&l=' + param + '&t=' + dorm_room[0] + dorm_wing[0].toUpperCase();
+        url = 'user=' + user_id + '&timestamp=' + ts + '&l=' + param + '&t=' + dormfloor;
 
         window.save_user2firebase(user_id, ts, url.replace(ts, '0000000000000'), {
             firstname: firstname,
@@ -72,13 +74,19 @@
             phone: phone,
             dorm_room: dorm_room,
             dorm_wing: dorm_wing,
-            login_start_time: timestamp.toString()
+            login_start_time: timestamp.toString(),
+            participant_id: user_id
         });
 
         $('#info-form').hide();
         $('#confirmation').hide();
         $('#correct-info').hide();
-        $('#instr').show();
+
+        if (dormfloor === '2S' || dormfloor === '4S') {
+            $('#instr').show();
+        } else {
+            $('#wrong-floor').show();
+        }
     });
 
     $('#agree-check').change((e) => {

@@ -59,8 +59,8 @@
             </div>
             <br><br>
             <div class="blue">
-                <p><a href="https://forms.gle/mHXAKBjgBqbyLukx8"><strong>Additional Opportunities to Participate</strong>: https://forms.gle/mHXAKBjgBqbyLukx8</a></p>
-                <p><a href="https://forms.gle/KugEgAYtKNR5YHkd7"><strong>Preliminary MRI Eligibility Screening</strong>: https://forms.gle/KugEgAYtKNR5YHkd7</a></p>
+                <p><a href="https://www.canva.com/design/DAGVqIaDCkQ/MSrvq3OseWD-kcTOPA3t7w/view" target="_blank"><u><strong>Photo Session Information</strong></u></a></p>
+                <p><a href="https://forms.gle/KugEgAYtKNR5YHkd7" target="_blank"><u><strong>Preliminary MRI Eligibility Screening</strong></u></a></p>
             </div>
             <br><br>
             <span class="small">If you have additional questions, please contact a member of our research team:</span><br>
@@ -70,10 +70,9 @@
 
         <!-- JavaScript -->
         <script type="text/javascript" src="js/progress.js"></script>
+        <script type="text/javascript" src="js/global.js"></script>
         <!-- Firebase -->
         <script type="module">
-            var DB_TYPE = 'prod_';  // 'test_' or 'prod_'
-
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
             import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js';
             import { getFirestore, doc, getDoc, setDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js';
@@ -107,7 +106,7 @@
             var tally = window.location.search.substring(1).split(/[&=]/)[3];
             var docSnap = null;
             try {
-                docSnap = await getDoc(doc(db, DB_TYPE + 'count', 'count'));
+                docSnap = await getDoc(doc(db, window.db_name + '_count', 'count'));
             } catch (e) {
                 alert('Failed to load data. Please check your internet connection and try again.\n' +
                     'If this message shows up multiple times, please contact the experimenters.\n' + e);
@@ -117,8 +116,8 @@
             if (docSnap && docSnap.exists()) {
                 let count = docSnap.data()[tally];
                 let totals = {
-                    '2N': 97,
-                    '7S': 90
+                    '2S': 98,
+                    '4S': 96
                 }
                 let total = tally in totals ? totals[tally] : 100;
                 let percent = Math.floor(count/total * 100);

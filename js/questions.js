@@ -1,15 +1,15 @@
 'use strict';
 
 var roster_questions = [  // page 1
-    'Consider the people you like to spend your free time with. Who are the people you socialize with most often? ' +
+    '1. Consider the people you like to spend your free time with. Who are the people you socialize with most often? ' +
     '(Examples: hang out with, eat meals with, participate in hobbies with.)',
 
-    'Who do you work with most often or go to for academic support? ' +
+    '2. Who do you work with most often or go to for academic support? ' +
     '(Examples: go to class with, work on homework sets together, study for tests together, do projects together).',
 
-    'Who would you talk to if something bad or upsetting happened to you so that you feel supported and cared for?',
+    '3. Who would you talk to if something bad or upsetting happened to you so that you feel supported and cared for?',
 
-    'Who do you interact most frequently online/via phone? (Examples: messaging on social media, text messaging, commenting on posts.)'
+    '4. Who do you interact most frequently online/via phone? (Examples: messaging on social media, text messaging, commenting on posts.)'
 ];
 var tie_strength_questions = [  // page 2
     'How close do you feel to the following people?',
