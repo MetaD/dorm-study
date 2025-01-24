@@ -1,1 +1,1 @@
-window.db_name = 'prod';
+window.db_name = '2025prod';
