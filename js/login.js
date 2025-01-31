@@ -59,7 +59,7 @@
     });
 
     $('#confirm-btn').click(() => {
-        let sha256 = CryptoJS.SHA256(dorm_room + uid).toString();
+        let sha256 = CryptoJS.SHA256(dorm_room + dorm_wing[0] + uid).toString();
         let ts = timestamp.valueOf().toString();
         let dormfloor = dorm_room[0] + dorm_wing[0].toUpperCase();
         let user_id = 'B' + dormfloor + '-' + sha256.slice(0, 5);  // ID for all tasks
